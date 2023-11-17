@@ -1,4 +1,4 @@
-package umc.study.domain.enums;
+package umc.study.domain.mission.enums;
 
 public enum MissionStatus {
     NOT_STARTED,

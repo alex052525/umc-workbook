@@ -1,4 +1,4 @@
-package umc.study.domain.enums;
+package umc.study.domain.member.enums;
 
 public enum FoodCategory {
     KOREAN_FOOD("한식"),
