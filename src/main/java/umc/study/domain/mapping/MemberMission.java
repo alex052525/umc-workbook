@@ -3,7 +3,7 @@ package umc.study.domain.mapping;
 import lombok.*;
 import umc.study.domain.member.entity.Member;
 import umc.study.domain.mission.entity.Mission;
-import umc.study.domain.common.entity.BaseTimeEntity;
+import umc.study.global.entity.BaseTimeEntity;
 import umc.study.domain.mission.enums.MissionStatus;
 
 import javax.persistence.*;

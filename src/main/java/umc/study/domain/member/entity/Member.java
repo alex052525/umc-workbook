@@ -2,7 +2,7 @@ package umc.study.domain.member.entity;
 
 import lombok.*;
 import umc.study.domain.review.entity.Review;
-import umc.study.domain.common.entity.BaseTimeEntity;
+import umc.study.global.entity.BaseTimeEntity;
 import umc.study.domain.member.enums.FoodCategory;
 import umc.study.domain.member.enums.Gender;
 import umc.study.domain.member.enums.MemberStatus;

@@ -1,7 +1,7 @@
 package umc.study.domain.region.entity;
 
 import lombok.*;
-import umc.study.domain.common.entity.BaseTimeEntity;
+import umc.study.global.entity.BaseTimeEntity;
 
 import javax.persistence.*;
 
