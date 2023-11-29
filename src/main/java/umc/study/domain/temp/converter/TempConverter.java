@@ -1,4 +1,4 @@
-package umc.study.domain.common.converter;
+package umc.study.domain.temp.converter;
 
 import umc.study.domain.temp.dto.TempResponse;
 
