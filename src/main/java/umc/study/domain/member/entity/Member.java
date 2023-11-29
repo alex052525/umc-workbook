@@ -1,9 +1,9 @@
 package umc.study.domain.member.entity;
 
 import lombok.*;
+import umc.study.domain.mapping.MemberFoodCategory;
 import umc.study.domain.review.entity.Review;
 import umc.study.global.entity.BaseTimeEntity;
-import umc.study.domain.member.enums.FoodCategory;
 import umc.study.domain.member.enums.Gender;
 import umc.study.domain.member.enums.MemberStatus;
 import umc.study.domain.mapping.MemberMission;
@@ -24,6 +24,8 @@ public class Member extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
+    private String name;
+
     private String email;
 
     @Column(nullable = false)
@@ -40,9 +42,13 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer point;
 
-    @Enumerated(EnumType.STRING)
+    private String birthDay;
+
     @Column(nullable = false)
-    private FoodCategory foodCategoryPreference;
+    private String address;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberFoodCategory> foodCategoryPreference = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissions = new ArrayList<>();
