@@ -1,15 +1,6 @@
 package umc.study.domain.foodcategory.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import umc.study.domain.foodcategory.repository.FoodCategoryRepository;
+public interface FoodCategoryService {
 
-@Service
-@RequiredArgsConstructor
-public class FoodCategoryService {
-    private final FoodCategoryRepository foodCategoryRepository;
-
-    public boolean existsById(Long id) {
-        return foodCategoryRepository.existsById(id);
-    }
+    boolean existsById(Long id);
 }
