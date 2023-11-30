@@ -1,6 +1,9 @@
 package umc.study.domain.member.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.study.domain.mapping.MemberFoodCategory;
 import umc.study.domain.review.entity.Review;
 import umc.study.global.entity.BaseTimeEntity;
@@ -15,6 +18,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Member extends BaseTimeEntity {
@@ -28,18 +33,18 @@ public class Member extends BaseTimeEntity {
 
     private String email;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'", nullable = false)
-    private MemberStatus memberStatus;
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
+    private MemberStatus status;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
 
-    @Column(nullable = false)
+    @ColumnDefault("0")
     private Integer point;
 
     private String birthDay;
