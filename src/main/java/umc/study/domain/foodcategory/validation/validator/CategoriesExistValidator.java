@@ -22,7 +22,7 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
         boolean isValid = values.stream()
-                .allMatch(value -> foodCategoryService.existsById(value));
+                .allMatch(value -> foodCategoryService.existsFoodCategoryById(value));
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();

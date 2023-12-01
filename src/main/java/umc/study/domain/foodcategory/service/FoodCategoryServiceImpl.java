@@ -9,7 +9,7 @@ import umc.study.domain.foodcategory.repository.FoodCategoryRepository;
 public class FoodCategoryServiceImpl implements FoodCategoryService {
     private final FoodCategoryRepository foodCategoryRepository;
     @Override
-    public boolean existsById(Long id) {
+    public boolean existsFoodCategoryById(Long id) {
         return foodCategoryRepository.existsById(id);
     }
 }

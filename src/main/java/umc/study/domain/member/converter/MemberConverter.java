@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class MemberConverter {
-    public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member){
+    public static MemberResponseDTO.JoinResultDTO toResultDTO(Member member){
         return MemberResponseDTO.JoinResultDTO.builder()
                 .memberId(member.getId())
                 .createdAt(LocalDateTime.now())
