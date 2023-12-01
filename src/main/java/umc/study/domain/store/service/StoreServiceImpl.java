@@ -1,7 +1,6 @@
 package umc.study.domain.store.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.StoreManager;
 import org.springframework.stereotype.Service;
 import umc.study.domain.region.entity.Region;
 import umc.study.domain.region.service.RegionService;
@@ -20,7 +19,7 @@ public class StoreServiceImpl implements StoreService{
 
     @Override
     public StoreResponseDTO createStore(StoreRequestDTO request) {
-        Long regionId = request.getRegion();
+        Long regionId = request.getRegionId();
         Region region = regionService.findByRegionId(regionId);
         Store newStore = storeConverter.toStore(request, region);
         storeRepository.save(newStore);

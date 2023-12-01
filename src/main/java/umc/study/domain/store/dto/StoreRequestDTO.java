@@ -1,8 +1,9 @@
 package umc.study.domain.store.dto;
 
 import lombok.Getter;
-import umc.study.domain.region.validation.annotation.ExistRegion;
+//import umc.study.domain.region.validation.annotation.ExistRegion;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 public class StoreRequestDTO {
@@ -13,6 +14,6 @@ public class StoreRequestDTO {
     private String info;
     @NotBlank
     private String address;
-    @ExistRegion
-    private Long region;
+    @NotNull
+    private Long regionId;
 }
