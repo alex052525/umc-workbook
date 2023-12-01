@@ -13,6 +13,7 @@ import umc.study.domain.member.dto.MemberRequestDTO;
 import umc.study.domain.member.entity.Member;
 import umc.study.domain.member.repository.MemberRepository;
 import umc.study.global.apipayload.code.status.ErrorStatus;
+import umc.study.global.exception.GeneralException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,5 +40,11 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         memberPreferList.forEach(memberPrefer -> {memberPrefer.setMember(newMember);});
 
         return memberRepository.save(newMember);
+    }
+
+    @Override
+    public Member findMemberById(Long id) {
+        return memberRepository.findById(id).orElseThrow(
+                () -> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
     }
 }

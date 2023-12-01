@@ -6,4 +6,5 @@ import umc.study.domain.member.entity.Member;
 public interface MemberCommandService
 {
     Member joinMember(MemberRequestDTO.JoinDto request);
+    Member findMemberById(Long id);
 }

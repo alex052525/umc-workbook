@@ -9,6 +9,8 @@ import umc.study.domain.store.dto.StoreRequestDTO;
 import umc.study.domain.store.dto.StoreResponseDTO;
 import umc.study.domain.store.entity.Store;
 import umc.study.domain.store.repository.StoreRepository;
+import umc.study.global.apipayload.code.status.ErrorStatus;
+import umc.study.global.exception.GeneralException;
 
 @Service
 @RequiredArgsConstructor
@@ -24,5 +26,12 @@ public class StoreServiceImpl implements StoreService{
         Store newStore = storeConverter.toStore(request, region);
         storeRepository.save(newStore);
         return storeConverter.toStoreResponseDto(newStore);
+    }
+
+    @Override
+    public Store findStoreById(Long id) {
+        return storeRepository.findById(id).orElseThrow(
+                () -> new GeneralException(ErrorStatus.REGION_NOT_FOUND)
+        );
     }
 }
