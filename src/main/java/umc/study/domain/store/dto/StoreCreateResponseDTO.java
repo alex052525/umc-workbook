@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StoreResponseDTO {
+public class StoreCreateResponseDTO {
     Long storeId;
     LocalDateTime createdAt;
 }
