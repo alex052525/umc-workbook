@@ -48,6 +48,17 @@ public class StoreServiceImpl implements StoreService{
         );
     }
 
+    @Override
+    public Page<Review> findAllReviewByStore(Store store, PageRequest pageRequest) {
+        return reviewService.findAllByStore(store, pageRequest);
+    }
+
+    @Override
+    public ReviewPreViewListDTO getReviewList(Long StoreId, Integer page) {
+        Store store = findStoreById(StoreId);
+        Page<Review> storePage = findAllReviewByStore(store, PageRequest.of(page, 10));
+        return storeConverter.reviewPreViewListDTO(storePage);
+    }
 
     @Override
     public ReviewCreateResponseDto createReview(ReviewCreateRequestDto request) {

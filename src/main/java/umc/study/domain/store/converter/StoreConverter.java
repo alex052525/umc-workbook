@@ -1,14 +1,20 @@
 package umc.study.domain.store.converter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import umc.study.domain.region.entity.Region;
-import umc.study.domain.store.dto.StoreRequestDTO;
-import umc.study.domain.store.dto.StoreResponseDTO;
+import umc.study.domain.review.dto.ReviewPreViewDTO;
+import umc.study.domain.review.dto.ReviewPreViewListDTO;
+import umc.study.domain.review.entity.Review;
+import umc.study.domain.store.dto.StoreCreateRequestDTO;
+import umc.study.domain.store.dto.StoreCreateResponseDTO;
 import umc.study.domain.store.entity.Store;
 
 @Component
 public class StoreConverter {
-    public Store toStore(StoreRequestDTO request, Region region) {
+    public Store toStore(StoreCreateRequestDTO request, Region region) {
         return Store.builder()
                 .name(request.getName())
                 .info(request.getInfo())
@@ -17,10 +23,33 @@ public class StoreConverter {
                 .build();
     }
 
-    public StoreResponseDTO toStoreResponseDto(Store store) {
-        return StoreResponseDTO.builder()
+    public StoreCreateResponseDTO toStoreResponseDto(Store store) {
+        return StoreCreateResponseDTO.builder()
                 .storeId(store.getId())
                 .createdAt(store.getCreatedAt())
                 .build();
+    }
+
+    public ReviewPreViewDTO reviewPreViewDTO(Review review) {
+        return ReviewPreViewDTO.builder()
+            .ownerNickname(review.getMember().getName())
+            .rating(review.getRating())
+            .createdAt(review.getCreatedAt().toLocalDate())
+            .body(review.getBody())
+            .build();
+    }
+
+    public ReviewPreViewListDTO reviewPreViewListDTO(Page<Review> reviewList){
+        List<ReviewPreViewDTO> reviewPreViewDTOList = reviewList.stream()
+            .map(this::reviewPreViewDTO).collect(Collectors.toList());
+
+        return ReviewPreViewListDTO.builder()
+            .isLast(reviewList.isLast())
+            .isFirst(reviewList.isFirst())
+            .totalPage(reviewList.getTotalPages())
+            .totalElements(reviewList.getTotalElements())
+            .listSize(reviewPreViewDTOList.size())
+            .reviewList(reviewPreViewDTOList)
+            .build();
     }
 }

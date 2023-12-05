@@ -13,6 +13,9 @@ import umc.study.domain.store.entity.Store;
 public interface StoreService {
     StoreCreateResponseDTO createStore(StoreCreateRequestDTO request);
     Store findStoreById(Long id);
+    Page<Review> findAllReviewByStore(Store store, PageRequest pageRequest);
+
+    ReviewPreViewListDTO getReviewList(Long StoreId, Integer page);
 
     ReviewCreateResponseDto createReview(ReviewCreateRequestDto request);
 }
