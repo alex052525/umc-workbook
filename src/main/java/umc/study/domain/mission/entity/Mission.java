@@ -2,7 +2,7 @@ package umc.study.domain.mission.entity;
 import lombok.*;
 import umc.study.domain.store.entity.Store;
 import umc.study.global.entity.BaseTimeEntity;
-import umc.study.domain.mapping.MemberMission;
+import umc.study.domain.membermission.entity.MemberMission;
 
 import javax.persistence.*;
 import java.util.ArrayList;

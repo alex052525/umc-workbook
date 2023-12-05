@@ -1,4 +1,4 @@
-package umc.study.domain.mapping;
+package umc.study.domain.membermission.entity;
 
 import lombok.*;
 import umc.study.domain.member.entity.Member;

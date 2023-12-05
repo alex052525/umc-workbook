@@ -9,7 +9,7 @@ import umc.study.domain.review.entity.Review;
 import umc.study.global.entity.BaseTimeEntity;
 import umc.study.domain.member.enums.Gender;
 import umc.study.domain.member.enums.MemberStatus;
-import umc.study.domain.mapping.MemberMission;
+import umc.study.domain.membermission.entity.MemberMission;
 
 import javax.persistence.*;
 import java.util.ArrayList;
