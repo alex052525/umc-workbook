@@ -19,7 +19,7 @@ public class Review extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String body;
 
     @Column(nullable = false)
     private Float rating;
