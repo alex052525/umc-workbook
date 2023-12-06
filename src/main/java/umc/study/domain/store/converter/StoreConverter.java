@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-import umc.study.domain.mission.dto.MissionPreViewDTO;
-import umc.study.domain.mission.dto.MissionPreViewListDTO;
+import umc.study.domain.mission.dto.MissionPreViewByStoreDTO;
+import umc.study.domain.mission.dto.MissionPreViewListByStoreDTO;
 import umc.study.domain.mission.entity.Mission;
 import umc.study.domain.region.entity.Region;
 import umc.study.domain.review.dto.ReviewPreViewDTO;
@@ -56,8 +56,8 @@ public class StoreConverter {
             .build();
     }
 
-    public MissionPreViewDTO toMissionPreViewDTO(Mission mission) {
-        return MissionPreViewDTO.builder()
+    public MissionPreViewByStoreDTO toMissionPreViewDTO(Mission mission) {
+        return MissionPreViewByStoreDTO.builder()
             .storeName(mission.getStore().getName())
             .description(mission.getDescription())
             .reward(mission.getReward())
@@ -65,17 +65,17 @@ public class StoreConverter {
             .build();
     }
 
-    public MissionPreViewListDTO toMissionPreViewListDTO(Page<Mission> missionList) {
-        List<MissionPreViewDTO> missionPreViewDTOList = missionList.stream()
+    public MissionPreViewListByStoreDTO toMissionPreViewListDTO(Page<Mission> missionList) {
+        List<MissionPreViewByStoreDTO> missionPreViewByStoreDTOList = missionList.stream()
             .map(this::toMissionPreViewDTO).collect(Collectors.toList());
 
-        return MissionPreViewListDTO.builder()
+        return MissionPreViewListByStoreDTO.builder()
             .isLast(missionList.isLast())
             .isFirst(missionList.isFirst())
             .totalPage(missionList.getTotalPages())
             .totalElements(missionList.getTotalElements())
-            .listSize(missionPreViewDTOList.size())
-            .missionList(missionPreViewDTOList)
+            .listSize(missionPreViewByStoreDTOList.size())
+            .missionList(missionPreViewByStoreDTOList)
             .build();
     }
 }

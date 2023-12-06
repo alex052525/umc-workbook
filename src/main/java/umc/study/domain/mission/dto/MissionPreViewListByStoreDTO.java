@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionPreViewListDTO {
-    List<MissionPreViewDTO> missionList;
+public class MissionPreViewListByStoreDTO {
+    List<MissionPreViewByStoreDTO> missionList;
     Integer listSize;
     Integer totalPage;
     Long totalElements;

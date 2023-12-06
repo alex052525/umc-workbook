@@ -4,10 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.member.entity.Member;
 import umc.study.domain.member.service.MemberCommandService;
-import umc.study.domain.mission.dto.MissionPreViewListDTO;
+import umc.study.domain.mission.dto.MissionPreViewListByStoreDTO;
 import umc.study.domain.mission.entity.Mission;
 import umc.study.domain.mission.service.MissionService;
 import umc.study.domain.region.entity.Region;
@@ -35,8 +34,8 @@ public class StoreServiceImpl implements StoreService{
     private final ReviewService reviewService;
     private final MemberCommandService memberCommandService;
     private final MissionService missionService;
-    private static final Integer REVIEW_PAGE_SIZE = 10;
-    private static final Integer MISSION_PAGE_SIZE = 10;
+    private final Integer STORE_REVIEW_PAGE_SIZE = 10;
+    private final Integer STORE_MISSION_PAGE_SIZE = 10;
     @Override
     public StoreCreateResponseDTO createStore(StoreCreateRequestDTO request) {
         Long regionId = request.getRegionId();
@@ -61,7 +60,7 @@ public class StoreServiceImpl implements StoreService{
     @Override
     public ReviewPreViewListDTO getReviewList(Long StoreId, Integer page) {
         Store store = findStoreById(StoreId);
-        Page<Review> storePage = findAllReviewByStore(store, PageRequest.of(page, REVIEW_PAGE_SIZE));
+        Page<Review> storePage = findAllReviewByStore(store, PageRequest.of(page, STORE_REVIEW_PAGE_SIZE));
         return storeConverter.toReviewPreViewListDTO(storePage);
     }
 
@@ -71,9 +70,9 @@ public class StoreServiceImpl implements StoreService{
     }
 
     @Override
-    public MissionPreViewListDTO getMissionList(Long StoreId, Integer page) {
+    public MissionPreViewListByStoreDTO getMissionList(Long StoreId, Integer page) {
         Store store = findStoreById(StoreId);
-        Page<Mission> storePage = findAllMissionByStore(store, PageRequest.of(page,MISSION_PAGE_SIZE));
+        Page<Mission> storePage = findAllMissionByStore(store, PageRequest.of(page,STORE_MISSION_PAGE_SIZE));
         return storeConverter.toMissionPreViewListDTO(storePage);
     }
 

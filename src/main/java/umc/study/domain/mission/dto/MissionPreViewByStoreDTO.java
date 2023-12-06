@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionPreViewDTO {
+public class MissionPreViewByStoreDTO {
     String storeName;
     String description;
     Integer reward;

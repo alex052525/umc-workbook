@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import umc.study.domain.mission.dto.MissionPreViewListDTO;
+import umc.study.domain.mission.dto.MissionPreViewListByStoreDTO;
 import umc.study.domain.review.dto.ReviewCreateRequestDto;
 import umc.study.domain.review.dto.ReviewCreateResponseDto;
 import umc.study.domain.review.dto.ReviewPreViewListDTO;
@@ -64,8 +64,8 @@ public class StoreController {
     }
 
     @GetMapping("/{storeId}/missions")
-    public ApiResponse<MissionPreViewListDTO> getMissions (@PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page", defaultValue = "0") Integer page){
-        MissionPreViewListDTO missions = storeService.getMissionList(storeId,page);
+    public ApiResponse<MissionPreViewListByStoreDTO> getMissions (@PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page", defaultValue = "0") Integer page){
+        MissionPreViewListByStoreDTO missions = storeService.getMissionList(storeId,page);
         return ApiResponse.onSuccess(missions);
     }
 }

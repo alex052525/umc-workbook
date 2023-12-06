@@ -2,7 +2,7 @@ package umc.study.domain.store.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import umc.study.domain.mission.dto.MissionPreViewListDTO;
+import umc.study.domain.mission.dto.MissionPreViewListByStoreDTO;
 import umc.study.domain.mission.entity.Mission;
 import umc.study.domain.review.dto.ReviewCreateRequestDto;
 import umc.study.domain.review.dto.ReviewCreateResponseDto;
@@ -18,6 +18,6 @@ public interface StoreService {
     Page<Review> findAllReviewByStore(Store store, PageRequest pageRequest);
     ReviewPreViewListDTO getReviewList(Long StoreId, Integer page);
     Page<Mission> findAllMissionByStore(Store store, PageRequest pageRequest);
-    MissionPreViewListDTO getMissionList(Long StoreId, Integer page);
+    MissionPreViewListByStoreDTO getMissionList(Long StoreId, Integer page);
     ReviewCreateResponseDto createReview(ReviewCreateRequestDto request);
 }
