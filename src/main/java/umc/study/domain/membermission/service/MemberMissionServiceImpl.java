@@ -1,8 +1,11 @@
 package umc.study.domain.membermission.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.study.domain.member.entity.Member;
 import umc.study.domain.membermission.converter.MemberMissionConverter;
 import umc.study.domain.membermission.dto.MissionChallengeReponseDTO;
 import umc.study.domain.membermission.entity.MemberMission;
@@ -26,5 +29,10 @@ public class MemberMissionServiceImpl implements MemberMissionService{
                 () -> new GeneralException(ErrorStatus.MISSION_NOT_FOUND)
         );
         return MemberMissionConverter.toMissionChallengeReponseDTO(updatedMemberMission);
+    }
+
+    @Override
+    public Page<MemberMission> findAllByMemberAndStatus(Member member, PageRequest pageRequest) {
+        return memberMissionRepository.findAllByMemberAndMissionStatus(member, MissionStatus.IN_PROGRESS,pageRequest);
     }
 }
