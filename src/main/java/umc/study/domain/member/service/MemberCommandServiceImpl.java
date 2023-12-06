@@ -1,6 +1,8 @@
 package umc.study.domain.member.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.domain.foodcategory.converter.MemberFoodCategoryConverter;
@@ -12,6 +14,10 @@ import umc.study.domain.member.converter.MemberConverter;
 import umc.study.domain.member.dto.MemberRequestDTO;
 import umc.study.domain.member.entity.Member;
 import umc.study.domain.member.repository.MemberRepository;
+import umc.study.domain.membermission.converter.MemberMissionConverter;
+import umc.study.domain.membermission.entity.MemberMission;
+import umc.study.domain.membermission.service.MemberMissionService;
+import umc.study.domain.mission.dto.MissionPreViewListByMemberDTO;
 import umc.study.global.apipayload.code.status.ErrorStatus;
 import umc.study.global.exception.GeneralException;
 
@@ -24,6 +30,9 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
+    private final MemberMissionService memberMissionService;
+    private final MemberMissionConverter memberMissionConverter;
+    private final Integer MEMBER_MISSION_PAGE_SIZE = 10;
 
 
     @Override
@@ -46,5 +55,16 @@ public class MemberCommandServiceImpl implements MemberCommandService{
     public Member findMemberById(Long id) {
         return memberRepository.findById(id).orElseThrow(
                 () -> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
+    }
+    @Override
+    public Page<MemberMission> findAllMissionByMember(Member member, PageRequest pageRequest) {
+        return memberMissionService.findAllByMemberAndStatus(member, pageRequest);
+    }
+
+    @Override
+    public MissionPreViewListByMemberDTO getMissionList(Long memberId, Integer page) {
+        Member member = findMemberById(memberId);
+        Page<MemberMission> memberMissionPage = findAllMissionByMember(member, PageRequest.of(page,MEMBER_MISSION_PAGE_SIZE));
+        return memberMissionConverter.toMissionPreViewListDTO(memberMissionPage);
     }
 }

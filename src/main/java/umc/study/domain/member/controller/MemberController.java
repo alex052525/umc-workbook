@@ -9,6 +9,7 @@ import umc.study.domain.member.entity.Member;
 import umc.study.domain.member.service.MemberCommandService;
 import umc.study.domain.membermission.dto.MissionChallengeReponseDTO;
 import umc.study.domain.membermission.service.MemberMissionService;
+import umc.study.domain.mission.dto.MissionPreViewListByMemberDTO;
 import umc.study.global.apipayload.ApiResponse;
 
 import javax.validation.Valid;
@@ -33,4 +34,9 @@ public class MemberController {
         return ApiResponse.onSuccess(response);
     }
 
+    @GetMapping("/{memberId}/missions")
+    public ApiResponse<MissionPreViewListByMemberDTO> getMissions (@PathVariable(name = "memberId") Long memberId, @RequestParam(name = "page", defaultValue = "0") Integer page){
+        MissionPreViewListByMemberDTO missions = memberCommandService.getMissionList(memberId,page);
+        return ApiResponse.onSuccess(missions);
+    }
 }
