@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionChallengeReponseDTO {
+public class MissionUpdatedReponseDTO {
     Long missionId;
     LocalDateTime updateAt;
 }
