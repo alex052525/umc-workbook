@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-import umc.study.domain.membermission.dto.MissionChallengeReponseDTO;
+import umc.study.domain.membermission.dto.MissionUpdatedReponseDTO;
 import umc.study.domain.membermission.entity.MemberMission;
 import umc.study.domain.mission.dto.MissionPreViewByMemberDTO;
 import umc.study.domain.mission.dto.MissionPreViewListByMemberDTO;
@@ -20,8 +20,8 @@ public class MemberMissionConverter {
                 .build();
     }
 
-    public static MissionChallengeReponseDTO toMissionChallengeReponseDTO(MemberMission memberMission) {
-        return MissionChallengeReponseDTO.builder()
+    public static MissionUpdatedReponseDTO toMissionUpdatedReponseDTO(MemberMission memberMission) {
+        return MissionUpdatedReponseDTO.builder()
                 .missionId(memberMission.getMission().getId())
                 .updateAt(LocalDateTime.now())
                 .build();
